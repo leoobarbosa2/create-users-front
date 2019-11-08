@@ -31,8 +31,8 @@ export const Table = styled.table`
     padding: 10px;
 
     &.tdTitle {
-      background: #000;
-      color: #fff;
+      font-weight: bold;
+      color: #7159c1;
     }
 
     button {
