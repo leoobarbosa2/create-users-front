@@ -10,7 +10,7 @@ export default createGlobalStyle`
 
   body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #eee;
+    background: #000;
     -webkit-font-smoothing: antialiased !important;
   }
 

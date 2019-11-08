@@ -1,26 +1,43 @@
 import React, { Component } from 'react';
-import api from '../../services/api'
+import api from '../../services/api';
+
+import { FaUserEdit } from 'react-icons/fa'
 
 import { Link } from 'react-router-dom'
 
-import { FaUserPlus } from 'react-icons/fa'
- 
-import { Container, Header, Form, ReturnButton } from  './styles'
+import { Header , Container, Form, CancelButton } from './styles';
 
-export default class Main extends Component {
+export default class UniqueUser extends Component {
   state = {
     newName: '',
     newAge: '',
     newEmail: '',
     newProfession: '',
-  };
+  }
+
+  async componentDidMount() {
+
+    const response = await api.get(`/users/${this.props.match.params.id}`)
+
+    const {name, age, email, profession} = response.data
+
+    this.setState({ 
+      newName: name,
+      newAge: age,
+      newEmail: email,
+      newProfession: profession,
+    })
+
+  }
 
   handleSubmit = async e => {
     e.preventDefault()
 
+    const id = this.props.match.params.id;
+
     const { newName, newAge, newEmail, newProfession } = this.state;
     
-    await api.post('/users', {
+     await api.put(`/users/${id}`, {
       name: newName,
       age: newAge,
       email: newEmail,
@@ -50,29 +67,39 @@ export default class Main extends Component {
   }
 
   render(){
-    const { newAge, newEmail, newName, newProfession } = this.state;
-
+    const { 
+      newAge,
+      newEmail,
+      newProfession,
+      newName,
+    } = this.state
     return (
+      <>
       <Container>
       <Header>
-      <FaUserPlus color="#000" size={40} />
-      <span>Adicionar usuários</span>
+        <FaUserEdit size={40} color="#000" />
+        <span> Atualizar dados do usuário</span>
       </Header>
-        <Form onSubmit={this.handleSubmit} action="">
+      <Form onSubmit={this.handleSubmit}>
+        <label htmlFor="name">Nome</label>
           <input id="name" type="text" placeholder="Informe o nome" 
-          value={newName} onChange={this.handleInputChange}/><br/>
+          value={newName}  onChange={this.handleInputChange}/><br/>
+        <label htmlFor="age">Idade</label>
           <input id="age" type="number" placeholder="Informe a Idade" 
           value={newAge} onChange={this.handleInputChange}/><br/>
+        <label htmlFor="email">Email</label>
           <input id="email" type="text" placeholder="Informe o Email" 
           value={newEmail} onChange={this.handleInputChange}/><br/>
+        <label htmlFor="profession">Profissão</label>
           <input id="profession" type="text" placeholder="Informe a profissão" 
           value={newProfession} onChange={this.handleInputChange}/><br/>
-          <button type="submit" >Adicionar</button>
-        </Form>
-        <ReturnButton>
-          <Link to="/users">Voltar a listagem</Link>
-        </ReturnButton>
+          <button type="submit" >Atualizar</button>
+      </Form>
+      <CancelButton>
+        <Link to ="/users">Cancelar</Link>
+      </CancelButton>
       </Container>
-    )
+      </>
+    );
   }
 }
