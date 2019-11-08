@@ -14,7 +14,7 @@ export const Header = styled.header`
   `;
 
 export const Container = styled.div`
-  max-width: 900px;
+  max-width: 1100px;
   background: #fff;
   border-radius: 4px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
