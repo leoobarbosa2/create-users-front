@@ -14,7 +14,7 @@ export const Header = styled.header`
   `;
 
 export const Container = styled.div`
-  max-width: 1400px;
+  max-width: 1200px;
   background: #fff;
   border-radius: 4px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -23,6 +23,7 @@ export const Container = styled.div`
 `;
 
 export const Table = styled.table`
+  margin: 0 auto;
   border: 1px solid #606060;
   border-spacing: 0;
 
