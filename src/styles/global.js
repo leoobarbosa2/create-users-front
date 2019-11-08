@@ -10,11 +10,8 @@ export default createGlobalStyle`
 
   body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #000;
+    background: #c4c4c4;
     -webkit-font-smoothing: antialiased !important;
   }
 
-  /* body, html, #root {
-    height: 100%;
-  } */
 `;

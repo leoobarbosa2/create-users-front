@@ -14,7 +14,7 @@ export const Header = styled.header`
   `;
 
 export const Container = styled.div`
-  max-width: 800px;
+  max-width: 900px;
   background: #fff;
   border-radius: 4px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -22,38 +22,27 @@ export const Container = styled.div`
   margin: 80px auto;
 `;
 
-export const List = styled.ul`
-  list-style: none;
-  display: flex;
-  flex-direction: column;
+export const Table = styled.table`
+  border: 1px solid #606060;
+  border-spacing: 0;
 
-  li{
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
-    align-items: center;
-    margin: 5px 0px 5px 0px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
-    padding: 5px;
+  td {
+    border: 1px solid #606060;
+    padding: 10px;
 
-    span {
-      display: flex;
-      color: #178;
-      font-weight: bold;
+    &.tdTitle {
+      background: #000;
+      color: #fff;
     }
-    
+
     button {
-      background: #fff;
-      margin-left: 4px;
-      padding: 4px;
-      border: 1px solid rgba(0, 0, 0, .7);
-      border-radius: 4px;
-      
+      background: none;
+      border:none;
+    
       cursor: pointer;
     }
   }
-`;
+`
 
 export const Add = styled.div`
   margin-top: 10px;

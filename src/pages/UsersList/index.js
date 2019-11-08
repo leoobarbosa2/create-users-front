@@ -7,7 +7,7 @@ import { FaUserFriends } from 'react-icons/fa'
 
 import { MdDelete, MdEdit } from 'react-icons/md'
 
-import { Container, List, Header, Add } from './styles'
+import { Container, Header, Add, Table } from './styles'
 
 export default class UsersList extends Component {
   state = {
@@ -19,8 +19,6 @@ export default class UsersList extends Component {
     const response = await api.get('/users');
 
     this.setState({ users: response.data})
-
-    console.log(response.data)
 
   }
 
@@ -46,22 +44,22 @@ export default class UsersList extends Component {
           <FaUserFriends size={40}/>
           Listagem de usuários
         </Header>
-
-        <List>
-          {users.map((user, index) => {
-            return (
-            <li key={user._id}>
-              <span>
-                {user.email}
-              </span>
-              <div>
-                <Link to={`/users/${user._id}`}>< MdEdit  size={20} color="#178"/></Link>
-                <button onClick={() => this.handleDelete(user._id)}>< MdDelete  size={20} color="#f00"/></button>
-              </div>
-            </li>
-            )
-          })}
-        </List>
+        <Table>
+          <tbody>
+            {users.map( user => {
+              return (
+                <tr key={user._id}>
+                  <td className="tdTitle">Nome</td><td>{user.name}</td>
+                  <td className="tdTitle">Email</td><td>{user.email}</td>
+                  <td className="tdTitle">Idade</td><td>{user.age}</td>
+                  <td className="tdTitle">Profissão</td><td>{user.profession}</td>
+                  <td><Link to={`/users/${user._id}`}>< MdEdit  size={20} color="#178"/></Link></td>
+                  <td><button onClick={() => this.handleDelete(user._id)}>< MdDelete  size={20} color="#f00"/></button></td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </Table>
         <Add>
           <Link to="/">Adicionar novo usuário</Link>
         </Add>
